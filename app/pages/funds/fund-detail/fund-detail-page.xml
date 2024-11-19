@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Fon Detay" class="action-bar">
+        <NavigationButton text="Geri" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Fon Başlık Bilgileri -->
+            <StackLayout class="bg-white p-4 rounded-lg mb-4">
+                <Label text="{{ fund.name }}" class="text-xl font-bold text-blue-900" textWrap="true" />
+                <Label text="{{ fund.code }}" class="text-gray-500" />
+                <Label text="{{ fund.type }}" class="text-sm text-blue-600 mt-1" />
+            </StackLayout>
+
+            <!-- Fiyat ve Getiri Bilgileri -->
+            <GridLayout rows="auto" columns="*, *" class="bg-white p-4 rounded-lg mb-4">
+                <StackLayout col="0">
+                    <Label text="Fon Fiyatı" class="text-sm text-gray-600" />
+                    <Label text="{{ fund.price }}" class="text-lg font-bold" />
+                </StackLayout>
+                <StackLayout col="1">
+                    <Label text="Günlük Getiri" class="text-sm text-gray-600" />
+                    <Label text="{{ fund.dailyReturn }}" class="{{ parseFloat(fund.dailyReturn) >= 0 ? 'text-green-600' : 'text-red-600' }} text-lg font-bold" />
+                </StackLayout>
+            </GridLayout>
+
+            <!-- Getiri Tablosu -->
+            <GridLayout rows="auto, auto, auto, auto" columns="*, *" class="bg-white p-4 rounded-lg mb-4">
+                <Label text="Dönem" col="0" row="0" class="font-medium p-2" />
+                <Label text="Getiri" col="1" row="0" class="font-medium p-2" />
+                
+                <Label text="Haftalık" col="0" row="1" class="p-2" />
+                <Label text="{{ fund.weeklyReturn }}" col="1" row="1" class="p-2" />
+                
+                <Label text="Aylık" col="0" row="2" class="p-2" />
+                <Label text="{{ fund.monthlyReturn }}" col="1" row="2" class="p-2" />
+                
+                <Label text="Yıllık" col="0" row="3" class="p-2" />
+                <Label text="{{ fund.yearlyReturn }}" col="1" row="3" class="p-2" />
+            </GridLayout>
+
+            <!-- İşlem Butonları -->
+            <GridLayout columns="*, *" class="mt-4">
+                <Button text="Fon Al" col="0" tap="{{ onBuyFund }}" 
+                    class="bg-blue-900 text-white m-1 p-4 rounded-lg" />
+                <Button text="Fon Sat" col="1" tap="{{ onSellFund }}" 
+                    class="bg-white text-blue-900 border-blue-900 border-width-1 m-1 p-4 rounded-lg" />
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

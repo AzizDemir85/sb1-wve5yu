@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Fon İşlemleri" class="action-bar">
+        <NavigationButton text="Geri" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Fon Filtreleme -->
+        <GridLayout row="0" columns="*, *" class="p-2 bg-gray-100">
+            <Button text="Tüm Fonlar" col="0" tap="{{ onFilterTap }}" class="{{ selectedFilter === 'all' ? 'bg-blue-900 text-white' : 'bg-white text-blue-900' }} m-1 rounded-lg" />
+            <Button text="Portföyüm" col="1" tap="{{ onPortfolioTap }}" class="{{ selectedFilter === 'portfolio' ? 'bg-blue-900 text-white' : 'bg-white text-blue-900' }} m-1 rounded-lg" />
+        </GridLayout>
+
+        <ScrollView row="1">
+            <StackLayout class="p-4">
+                <!-- Fon Listesi -->
+                <ListView items="{{ funds }}" separatorColor="transparent" height="100%">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" rows="auto, auto, auto" class="bg-white p-4 rounded-lg mb-3 elevation-2">
+                            <!-- Fon Adı ve Kodu -->
+                            <Label text="{{ name }}" col="0" row="0" class="font-bold text-lg text-blue-900" textWrap="true" />
+                            <Label text="{{ code }}" col="0" row="1" class="text-sm text-gray-500 mb-2" />
+                            
+                            <!-- Fon Değerleri -->
+                            <GridLayout col="0" row="2" columns="*, *" rows="auto, auto">
+                                <Label text="Günlük Getiri" col="0" row="0" class="text-sm text-gray-600" />
+                                <Label text="Fiyat" col="1" row="0" class="text-sm text-gray-600" />
+                                <Label text="{{ dailyReturn }}" col="0" row="1" class="{{ parseFloat(dailyReturn) >= 0 ? 'text-green-600' : 'text-red-600' }} font-medium" />
+                                <Label text="{{ price }}" col="1" row="1" class="font-medium" />
+                            </GridLayout>
+
+                            <!-- İşlem Butonu -->
+                            <Button text="İşlem Yap" col="1" row="0" rowSpan="3" 
+                                class="bg-blue-900 text-white p-2 rounded-lg" 
+                                tap="{{ $parents['ListView'].onFundTap }}" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="Giriş" class="action-bar" flat="true">
+        <NavigationButton visibility="collapsed" />
+    </ActionBar>
+
+    <StackLayout class="p-6">
+        <Image src="~/images/bank-logo.png" class="h-32 w-32 self-center mb-8" />
+        
+        <Label text="Hoş Geldiniz" class="text-2xl font-bold text-center mb-6 text-blue-900" />
+        
+        <GridLayout rows="auto, auto, auto, auto" class="bg-white p-4 rounded-lg">
+            <StackLayout row="0" class="mb-4">
+                <Label text="Müşteri Numarası" class="text-sm text-gray-600 mb-1" />
+                <TextField text="{{ customerNumber }}" class="input p-3 border-b-2" hint="Müşteri numaranızı giriniz" keyboardType="number" />
+            </StackLayout>
+
+            <StackLayout row="1" class="mb-6">
+                <Label text="Şifre" class="text-sm text-gray-600 mb-1" />
+                <TextField text="{{ password }}" class="input p-3 border-b-2" hint="Şifrenizi giriniz" secure="true" />
+            </StackLayout>
+
+            <Button row="2" text="Giriş Yap" tap="{{ onLogin }}" class="bg-blue-900 text-white p-4 rounded-lg font-medium" />
+            
+            <Button row="3" text="Şifremi Unuttum" tap="{{ onForgotPassword }}" class="bg-transparent text-blue-900 mt-3" />
+        </GridLayout>
+    </StackLayout>
+</Page></content></file>
+
+<boltAction type="file" filePath="app/pages/login/login-view-model.ts">import { Observable } from '@nativescript/core';
+import { Frame } from '@nativescript/core';
+
+export class LoginViewModel extends Observable {
+    private _customerNumber: string = "";
+    private _password: string = "";
+
+    constructor() {
+        super();
+    }
+
+    get customerNumber(): string {
+        return this._customerNumber;
+    }
+
+    set customerNumber(value: string) {
+        if (this._customerNumber !== value) {
+            this._customerNumber = value;
+            this.notifyPropertyChange('customerNumber', value);
+        }
+    }
+
+    get password(): string {
+        return this._password;
+    }
+
+    set password(value: string) {
+        if (this._password !== value) {
+            this._password = value;
+            this.notifyPropertyChange('password', value);
+        }
+    }
+
+    onLogin() {
+        // Basic validation
+        if (!this._customerNumber || !this._password) {
+            alert("Lütfen tüm alanları doldurunuz.");
+            return;
+        }
+
+        // In a real app, you would validate credentials against a backend
+        if (this._customerNumber === "12345" && this._password === "12345") {
+            Frame.topmost().navigate({
+                moduleName: "main-page",
+                clearHistory: true
+            });
+        } else {
+            alert("Hatalı müşteri numarası veya şifre!");
+        }
+    }
+
+    onForgotPassword() {
+        alert("Şifre sıfırlama bağlantısı gönderilecek.");
+    }
+}

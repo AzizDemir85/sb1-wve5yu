@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout>
+    <Label text="Son İşlemler" class="text-lg font-semibold mb-3" />
+    <ListView items="{{ transactions }}" height="500">
+        <ListView.itemTemplate>
+            <GridLayout columns="auto, *, auto" rows="auto, auto" class="transaction-item p-3">
+                <Label text="{{ icon }}" class="fas text-xl text-blue-600" row="0" col="0" rowSpan="2" />
+                <Label text="{{ title }}" class="font-medium ml-3" row="0" col="1" />
+                <Label text="{{ date }}" class="text-sm text-gray-500 ml-3" row="1" col="1" />
+                <Label text="{{ amount }}" class="{{ amount.includes('+') ? 'text-green-600' : 'text-red-600' }} font-medium" row="0" col="2" rowSpan="2" />
+            </GridLayout>
+        </ListView.itemTemplate>
+    </ListView>
+</StackLayout>

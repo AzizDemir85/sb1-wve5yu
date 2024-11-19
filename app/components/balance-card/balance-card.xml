@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GridLayout rows="auto, auto" columns="*" class="balance-card p-6 mb-4">
+    <Label text="Toplam Bakiye" row="0" class="text-base opacity-80" />
+    <Label text="{{ balance }}" row="1" class="text-3xl font-bold mt-1" />
+</GridLayout>

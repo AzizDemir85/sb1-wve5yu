@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GridLayout rows="auto" columns="*, *, *" class="mb-6">
+    <StackLayout col="0" class="text-center" tap="{{ onTransfer }}">
+        <Label text="&#xf362;" class="fas text-2xl text-blue-600" />
+        <Label text="Para Gönder" class="text-sm mt-1" />
+    </StackLayout>
+    <StackLayout col="1" class="text-center" tap="{{ onPayBills }}">
+        <Label text="&#xf571;" class="fas text-2xl text-blue-600" />
+        <Label text="Fatura Öde" class="text-sm mt-1" />
+    </StackLayout>
+    <StackLayout col="2" class="text-center" tap="{{ onTopUp }}">
+        <Label text="&#xf09d;" class="fas text-2xl text-blue-600" />
+        <Label text="Yükle" class="text-sm mt-1" />
+    </StackLayout>
+</GridLayout>
